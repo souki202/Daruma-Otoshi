@@ -1,16 +1,13 @@
 #include <iostream>
 #include <cstring>
 #include <algorithm>
-/*
-–¢Š®¬
-*/
 
 constexpr int NUM = 300;
 int w[NUM] = { 0 };
 bool dp[NUM][NUM] = { {false} };
 int ddp[NUM+1] = { 0 };
 
-//a~a+1‚Æa+2~bA¥¥¥Aa~d‚Æd+1~rA¥¥¥Aa~b-2‚Æb-1~b‚Ì‚Ç‚ê‚©‚ª—‚Æ‚¹‚é”»’èB
+//a~a+1ã¨a+2~bã€ï½¥ï½¥ï½¥ã€a~dã¨d+1~rã€ï½¥ï½¥ï½¥ã€a~b-2ã¨b-1~bã®ã©ã‚Œã‹ãŒè½ã¨ã›ã‚‹åˆ¤å®šã€‚
 bool isDroped(int a, int b) {
 	if (b - a <= 1) return false;
 	for (int i = a + 1; i < b; i += 2) {
@@ -25,10 +22,10 @@ int main() {
 		std::memset(dp, 0, sizeof(dp));
 		for (int i = 0; i < n; i++) std::cin >> w[i];
 
-		for (int d = 1; d < n; d += 2) { //—‚Æ‚·ŠÔŠu
-			for (int i = 0; i < n - d; i++) { //—‚Æ‚·êŠ
+		for (int d = 1; d < n; d += 2) { //è½ã¨ã™é–“éš”
+			for (int i = 0; i < n - d; i++) { //è½ã¨ã™å ´æ‰€
 				if ((d == 1 || dp[i + 1][i + d - 1]) && std::abs(w[i] - w[i + d]) <= 1){
-					dp[i][i + d] = true; //ŠÔ‚ÌƒuƒƒbƒN‚ğ‘S‚Ä—‚Æ‚¹‚é
+					dp[i][i + d] = true; //é–“ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’å…¨ã¦è½ã¨ã›ã‚‹
 				}
 				if (isDroped(i, i + d)) {
 					dp[i][i + d] = true;
